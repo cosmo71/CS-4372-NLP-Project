@@ -1,0 +1,43 @@
+REPORT 
+
+Project: Question-answering Chatbot system.
+GitHub Link: https://github.com/cosmo71/CS-4372-NLP-Project
+
+Book: The Science of Getting Rich by W. D. Wattles
+Link: https://www.gutenberg.org/ebooks/59844
+
+
+LLM: llama-3.2-90b-vision-preview
+Embeddings model: text-embedding-004
+Vector Store: FAISS (Facebook AI Similarity Search)
+
+RAG: Retrieval augmented generation is a technique that grants generative artificial intelligence models information retrieval capabilities.
+
+I used the llama model using the Groq's API. Groq, Inc. is an American artificial intelligence company that builds an AI accelerator application-specific integrated circuit that they call the Language Processing Unit and related hardware to accelerate the inference performance of AI workloads
+I also used Google's Text embeddings API to use text-embedding-004 model.
+In this project we use RAG in order to provide the model with context to answer the user's question.
+
+Steps: 
+        1. Setup llama model, Embeddings model & Vector Database
+        2. Read in the book content from GitHub
+        3. Split book content into chunks & Embedd them using the embedding model
+        4. Store embeddings into FIASS vector store
+        5. Ask a question to the model 
+              - Query is embedded 
+              - Embedded Query is used to serach for similar chunks 
+              - Information from these chunks and the query is sent the llama model
+              - Llama model returns response to your question
+
+Transformer Architecture: Llama 3.2 is an auto-regressive language model that uses an optimized transformer architecture. The tuned versions use supervised fine-tuning (SFT) and reinforcement learning with human feedback (RLHF) to align with human preferences for helpfulness and safety.
+
+Hyperparamters Tuning:
+  <Srijan>
+
+Results:
+  <Srijan>
+  
+
+
+Evaluation Metrics: 
+  <Srijan>
+      
