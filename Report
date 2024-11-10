@@ -31,7 +31,10 @@ Steps:
 Transformer Architecture: Llama 3.2 is an auto-regressive language model that uses an optimized transformer architecture. The tuned versions use supervised fine-tuning (SFT) and reinforcement learning with human feedback (RLHF) to align with human preferences for helpfulness and safety.
 
 Hyperparamters Tuning:
-  <Srijan>
+  Temperature: Controls the creativity of responses. Range: 0 (more deterministic) to 1+ (more random).
+Max tokens: Sets the maximum length of responses. Higher values yield longer responses but may increase computation.
+Top-k and top-p: Sampling parameters to control response diversity if supported by llama.invoke().
+FAISS retrieval parameters: Number of top documents (top_k) to retrieve and embed dimension size.
 
 Results:
   <Srijan>
