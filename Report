@@ -27,20 +27,35 @@ Steps:
               - Embedded Query is used to serach for similar chunks 
               - Information from these chunks and the query is sent the llama model
               - Llama model returns response to your question
+        6. Do the evaluation using the cosine similarity and the bleu score
+                - Do a test question dictionary with query and answer already predefined and compare it with the output of the chatbot.
 
 Transformer Architecture: Llama 3.2 is an auto-regressive language model that uses an optimized transformer architecture. The tuned versions use supervised fine-tuning (SFT) and reinforcement learning with human feedback (RLHF) to align with human preferences for helpfulness and safety.
 
 Hyperparamters Tuning:
-  Temperature: Controls the creativity of responses. Range: 0 (more deterministic) to 1+ (more random).
+Temperature: Controls the creativity of responses. Range: 0 (more deterministic) to 1+ (more random).
+        -values of .2,.5,.7
 Max tokens: Sets the maximum length of responses. Higher values yield longer responses but may increase computation.
-Top-k and top-p: Sampling parameters to control response diversity if supported by llama.invoke().
+        -values of 100,150,200
+Top-k: Sampling parameters to control response diversity if supported by llama.invoke().
+        -values of 3,5,10
 FAISS retrieval parameters: Number of top documents (top_k) to retrieve and embed dimension size.
+        -value of 768
 
-Results:
-  <Srijan>
+Results:  
+    embedding_dimension  max_tokens  temperature  top_k   cosine_similarity   bleu_score
+1                   768         100          0.2      3    0.866125            0.002694
+2                   768         100          0.2      5    0.851990            0.004731   
+3                   768         150          0.2      3    0.849648            0.002044 
+4                   768         100          0.5     10    0.842666            0.002266   
+5                   768         100          0.5      3    0.840809            0.002944  
+
+The best hyperparameters based on the results is result 1 with the parameters [max_tokens:100, temperature:.2, top_k:3, embedding_dimension:768].
+I am giving cosine_similarity a higher weight because it measures the semantics similarity of the ideal answer in the dictionary and the answer outputted by the chatbot.
+blue_score is close to 0 for all trials due to the variance of answers in chatbot.
   
 
 
 Evaluation Metrics: 
-  <Srijan>
-      
+The cosine similarity: Calculate the similarity between the embeddings of responses and ground truth answers. Value from 0-1 with best being 1. 
+BLEU Score: Measures the overlap between generated answers and reference answers. This is a more in depth comparision such as the ordering of the text in the response versus the ideal output. Value from 0-1 with best at 1.
